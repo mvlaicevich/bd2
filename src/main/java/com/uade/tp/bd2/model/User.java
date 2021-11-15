@@ -1,6 +1,19 @@
 package com.uade.tp.bd2.model;
 
-public class User {
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.springframework.data.redis.core.RedisHash;
+
+import java.io.Serializable;
+
+@RedisHash("User")
+@Builder
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+public class User implements Serializable {
 
     private int id;
     private String nombre;
