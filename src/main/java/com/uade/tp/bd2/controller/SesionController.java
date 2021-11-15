@@ -33,7 +33,7 @@ public class SesionController {
     @GetMapping("/{id}")
     @ResponseBody
     public Sesion getSession(@PathVariable String id) {
-        return null;
+        return sesionService.getSesionById(id);
     }
 
 

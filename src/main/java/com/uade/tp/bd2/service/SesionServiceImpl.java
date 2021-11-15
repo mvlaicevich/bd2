@@ -23,4 +23,9 @@ public class SesionServiceImpl implements SesionService{
         Sesion sesion = Sesion.builder().user(user).actividades(new ArrayList<>()).build();
         return sesionRepository.save(sesion);
     }
+
+    @Override
+    public Sesion getSesionById(String id) {
+        return sesionRepository.findById(id).get();
+    }
 }

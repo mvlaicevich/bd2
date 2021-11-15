@@ -7,4 +7,5 @@ public interface SesionService {
 
     Sesion createSesion(User user);
 
+    Sesion getSesionById(String id);
 }
