@@ -4,7 +4,9 @@ import com.uade.tp.bd2.model.Cart;
 
 public interface CartService {
 
-    Cart getCartById(int id);
+    Cart getCartById(String id);
 
-    Cart getCartByUserId(int userId);
+    Cart getCartByUserId(String userId);
+
+    Cart createCart(Cart cart);
 }
