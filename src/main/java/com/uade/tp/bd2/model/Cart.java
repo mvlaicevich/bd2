@@ -18,7 +18,7 @@ public class Cart {
 
     @Id
     private String id;
-    private String userId;
+    private String sesionId;
     private Map<Producto,Integer> Productos;
 
 }

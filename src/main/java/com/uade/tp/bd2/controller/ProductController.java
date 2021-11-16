@@ -39,8 +39,9 @@ public class ProductController {
     @PostMapping()
     @ResponseBody
     public Producto createProducto(@RequestBody Producto producto) {
-        guardarActividadProducto(producto, "Creacion");
-        return productService.createProducto(producto);
+        Producto newProducto = productService.createProducto(producto);
+        guardarActividadProducto(newProducto, "Creacion");
+        return newProducto;
     }
 
     @PutMapping()

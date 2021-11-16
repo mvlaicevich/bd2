@@ -6,7 +6,6 @@ import com.uade.tp.bd2.model.Pedido;
 import com.uade.tp.bd2.service.ActividadCartService;
 import com.uade.tp.bd2.service.CartService;
 import com.uade.tp.bd2.service.PedidoService;
-import com.uade.tp.bd2.service.PedidoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,27 +34,44 @@ public class CartController {
     @GetMapping("/{userId}")
     @ResponseBody
     public Cart getCarrito(@PathVariable String userId) {
-        return cartService.getCartByUserId(userId);
+        Cart cart = cartService.getCartByUserId(userId);
+        actividadCartService.crearActividadCart(ActividadCart.builder()
+                .cartId(cart.getId())
+                .tipoActividad("Obtener carrito")
+                .build());
+        return cart;
     }
 
     @PostMapping()
     @ResponseBody
     public Cart crearCarrito(@RequestBody Cart cart) {
-        return cartService.createCart(cart);
+        Cart cartResponse = cartService.createCart(cart);
+        actividadCartService.crearActividadCart(ActividadCart.builder()
+                .cartId(cartResponse.getId())
+                .tipoActividad("Crear carrito")
+                .build());
+        return cartResponse;
     }
 
     @PutMapping()
     @ResponseBody
     public Cart updateCarrito(@RequestBody Cart cart) {
+        actividadCartService.crearActividadCart(ActividadCart.builder()
+                .cartId(cart.getId())
+                .tipoActividad("Actualizar carrito")
+                .build());
         return cartService.createCart(cart);
     }
 
-    @PostMapping("/pedido/{id}")
+    @PostMapping("/pedido/{id}/{formaPago}")
     @ResponseBody
-    public Pedido crearPedido(@PathVariable String id) {
+    public Pedido crearPedido(@PathVariable String id, @PathVariable String formaPago) {
         Cart cart = cartService.getCartById(id);
-
-        return pedidoService.createPedido(cart);
+        actividadCartService.crearActividadCart(ActividadCart.builder()
+                .cartId(cart.getId())
+                .tipoActividad("Crear Pedido")
+                .build());
+        return pedidoService.createPedido(cart, formaPago);
     }
 
 

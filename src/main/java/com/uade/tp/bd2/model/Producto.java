@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.MongoId;
+import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
@@ -14,11 +14,12 @@ import java.util.List;
 @NoArgsConstructor
 public class Producto {
 
-    @MongoId
+    @Id
     private String id;
     private String descripcion;
     private List<String> imagenes;
     private List<String> comentarios;
     private String video;
+    private double precio;
 
 }
