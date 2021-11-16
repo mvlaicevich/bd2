@@ -1,13 +1,24 @@
 package com.uade.tp.bd2.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.MongoId;
+
 import java.util.List;
 
+@Builder
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Producto {
 
-    private int id;
+    @MongoId
+    private String id;
     private String descripcion;
-    private List<Imagen> imagenes;
+    private List<String> imagenes;
     private List<String> comentarios;
-    private Video video;
+    private String video;
 
 }
