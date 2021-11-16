@@ -21,6 +21,7 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     public Pedido createPedido(Cart cart) {
         Pedido pedido = Pedido.builder()
+                .cartId(cart.getId())
                 .productos(cart.getProductos())
                 .sesion(sesionService.getSesionById(cart.getSesionId()))
                 .build();

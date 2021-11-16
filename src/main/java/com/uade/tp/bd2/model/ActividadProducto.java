@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 @RedisHash("ActividadProducto")
 @Builder
@@ -18,7 +19,9 @@ public class ActividadProducto {
 
     @Id
     private String id;
+    @Indexed
     private String sesionId;
+    @Indexed
     private String idProducto;
     private String tipoOperacion;
     private String valorAnterior;

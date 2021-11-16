@@ -22,7 +22,7 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public Cart getCartByUserId(String userId) {
-        return cartRepository.findByUserId(userId);
+        return cartRepository.findBySesionId(userId);
     }
 
     @Override

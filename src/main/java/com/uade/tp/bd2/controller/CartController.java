@@ -37,6 +37,7 @@ public class CartController {
         Cart cart = cartService.getCartByUserId(userId);
         actividadCartService.crearActividadCart(ActividadCart.builder()
                 .cartId(cart.getId())
+                .sesionId(cart.getSesionId())
                 .tipoActividad("Obtener carrito")
                 .build());
         return cart;
@@ -48,6 +49,7 @@ public class CartController {
         Cart cartResponse = cartService.createCart(cart);
         actividadCartService.crearActividadCart(ActividadCart.builder()
                 .cartId(cartResponse.getId())
+                .sesionId(cart.getSesionId())
                 .tipoActividad("Crear carrito")
                 .build());
         return cartResponse;
@@ -58,6 +60,7 @@ public class CartController {
     public Cart updateCarrito(@RequestBody Cart cart) {
         actividadCartService.crearActividadCart(ActividadCart.builder()
                 .cartId(cart.getId())
+                .sesionId(cart.getSesionId())
                 .tipoActividad("Actualizar carrito")
                 .build());
         return cartService.createCart(cart);
@@ -69,9 +72,22 @@ public class CartController {
         Cart cart = cartService.getCartById(id);
         actividadCartService.crearActividadCart(ActividadCart.builder()
                 .cartId(cart.getId())
+                .sesionId(cart.getSesionId())
                 .tipoActividad("Crear Pedido")
                 .build());
         return pedidoService.createPedido(cart);
+    }
+
+    @GetMapping("/pedido/{id}")
+    @ResponseBody
+    public Pedido obtenerPedido(@PathVariable String id) {
+        Pedido pedido = pedidoService.getPedidoById(id);
+        actividadCartService.crearActividadCart(ActividadCart.builder()
+                .cartId(pedido.getCartId())
+                .sesionId(pedido.getSesion().getId())
+                .tipoActividad("Obtener Pedido")
+                .build());
+        return pedido;
     }
 
 

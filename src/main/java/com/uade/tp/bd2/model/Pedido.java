@@ -17,6 +17,7 @@ import java.util.Map;
 public class Pedido {
 
     private int id;
+    private String cartId;
     private Map<Producto, Integer> productos;
     private Sesion sesion;
     private List<Impuesto> impuestos;

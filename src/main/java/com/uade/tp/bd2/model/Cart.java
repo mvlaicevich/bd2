@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 import java.util.Map;
 
@@ -20,6 +21,7 @@ public class Cart {
 
     @Id
     private String id;
+    @Indexed
     private String sesionId;
     private Map<Producto,Integer> Productos;
 

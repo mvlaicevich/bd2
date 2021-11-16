@@ -1,7 +1,6 @@
 package com.uade.tp.bd2.service;
 
 import com.uade.tp.bd2.model.ActividadProducto;
-import com.uade.tp.bd2.model.Producto;
 
 import java.util.List;
 
