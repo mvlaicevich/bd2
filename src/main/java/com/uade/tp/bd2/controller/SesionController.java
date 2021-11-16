@@ -29,7 +29,7 @@ public class SesionController {
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public Sesion logUser(@RequestBody User user) {
+    public Sesion createUser(@RequestBody User user) {
         Sesion sesion = sesionService.createSesion(user);
         actividadSesionService.crearActividadSesion(ActividadSesion.builder()
                 .tipoActividad("Crear sesion")
@@ -38,9 +38,22 @@ public class SesionController {
         return sesion;
     }
 
+
+    @PostMapping("/login")
+    @ResponseBody
+    public Sesion logUser(@RequestBody User user) {
+        Sesion sesion = sesionService.getSesionByUser(user);
+        actividadSesionService.crearActividadSesion(ActividadSesion.builder()
+                .tipoActividad("Iniciar sesion")
+                .sesionId(sesion.getId())
+                .build());
+        return sesion;
+    }
+
     @GetMapping("/{id}")
     @ResponseBody
     public Sesion getSession(@PathVariable String id) {
+
         return sesionService.getSesionById(id);
     }
 

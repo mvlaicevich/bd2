@@ -6,8 +6,6 @@ import com.uade.tp.bd2.repository.SesionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-
 @Service
 public class SesionServiceImpl implements SesionService{
 
@@ -27,5 +25,10 @@ public class SesionServiceImpl implements SesionService{
     @Override
     public Sesion getSesionById(String id) {
         return sesionRepository.findById(id).get();
+    }
+
+    @Override
+    public Sesion getSesionByUser(User user) {
+        return sesionRepository.findByUser(user);
     }
 }

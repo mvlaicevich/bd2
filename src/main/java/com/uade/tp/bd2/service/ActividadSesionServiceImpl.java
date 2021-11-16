@@ -10,20 +10,20 @@ import java.util.List;
 @Service
 public class ActividadSesionServiceImpl implements ActividadSesionService {
 
-    private ActividadSesionRepository ActividadSesionRepository;
+    private ActividadSesionRepository actividadSesionRepository;
 
     @Autowired
-    public ActividadSesionServiceImpl(ActividadSesionRepository ActividadSesionRepository) {
-        this.ActividadSesionRepository = ActividadSesionRepository;
+    public ActividadSesionServiceImpl(ActividadSesionRepository actividadSesionRepository) {
+        this.actividadSesionRepository = actividadSesionRepository;
     }
 
     @Override
     public List<ActividadSesion> getActividadSesionBySesionId(String id) {
-        return ActividadSesionRepository.findAllBySesionId(id);
+        return actividadSesionRepository.findAllBySesionId(id);
     }
 
     @Override
     public void crearActividadSesion(ActividadSesion ActividadSesion) {
-        ActividadSesionRepository.save(ActividadSesion);
+        actividadSesionRepository.save(ActividadSesion);
     }
 }

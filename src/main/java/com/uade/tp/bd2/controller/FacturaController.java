@@ -37,7 +37,7 @@ public class FacturaController {
         Pedido pedido = pedidoService.getPedidoById(id);
         Factura factura = facturaService.createFactura(pedido, formaPago);
         actividadFacturaService.crearActividadFactura(ActividadFactura.builder()
-                .idFactura(factura.getId())
+                .facturaId(factura.getId())
                 .actividad("Crear Factura por monto:" + factura.getTotal())
                 .totalFacturado(factura.getTotal())
                 .sesionId(pedido.getSesion().getId())

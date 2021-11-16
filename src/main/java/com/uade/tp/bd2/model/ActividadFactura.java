@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
 
+@RedisHash("ActividadFactura")
 @Builder
 @Getter
 @AllArgsConstructor
@@ -17,7 +19,7 @@ public class ActividadFactura {
     @Id
     private String id;
     private String sesionId;
-    private String idFactura;
+    private String facturaId;
     private String actividad;
     private double totalFacturado;;
 
