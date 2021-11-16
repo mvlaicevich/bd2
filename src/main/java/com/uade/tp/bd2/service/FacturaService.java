@@ -6,4 +6,6 @@ import com.uade.tp.bd2.model.Pedido;
 public interface FacturaService {
 
     Factura createFactura(Pedido pedido, String formaPago);
+
+    Factura getFacturaById(String id);
 }

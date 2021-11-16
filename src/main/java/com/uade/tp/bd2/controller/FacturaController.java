@@ -9,6 +9,7 @@ import com.uade.tp.bd2.service.ActividadFacturaService;
 import com.uade.tp.bd2.service.FacturaService;
 import com.uade.tp.bd2.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +25,10 @@ public class FacturaController {
     private ActividadFacturaService actividadFacturaService;
 
     @Autowired
-    public FacturaController(PedidoService pedidoService, FacturaService facturaService) {
+    public FacturaController(PedidoService pedidoService, FacturaService facturaService, ActividadFacturaService actividadFacturaService) {
         this.pedidoService = pedidoService;
         this.facturaService = facturaService;
+        this.actividadFacturaService = actividadFacturaService;
     }
 
 
@@ -41,6 +43,20 @@ public class FacturaController {
                 .actividad("Crear Factura por monto:" + factura.getTotal())
                 .totalFacturado(factura.getTotal())
                 .sesionId(pedido.getSesion().getId())
+                .build());
+        return factura;
+    }
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public Factura obtenerFactura(@PathVariable String id) {
+
+        Factura factura = facturaService.getFacturaById(id);
+        actividadFacturaService.crearActividadFactura(ActividadFactura.builder()
+                .facturaId(factura.getId())
+                .actividad("obtener factura:" + factura.getId())
+                .totalFacturado(factura.getTotal())
+                .sesionId(factura.getPedido().getSesion().getId())
                 .build());
         return factura;
     }
