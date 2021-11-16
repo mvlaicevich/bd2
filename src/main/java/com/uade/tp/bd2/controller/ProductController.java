@@ -30,31 +30,33 @@ public class ProductController {
         this.actividadProductoService = actividadProductoService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{sesionId}/{id}")
     @ResponseBody
-    public Producto getProducto(@PathVariable String id) {
-        return productService.getProductById(id);
+    public Producto getProducto(@PathVariable String sesionId, @PathVariable String id) {
+        Producto producto = productService.getProductById(id);
+        guardarActividadProducto(producto, "Obtener Producto", sesionId);
+        return producto;
     }
 
-    @PostMapping()
+    @PostMapping("/{sesionId}")
     @ResponseBody
-    public Producto createProducto(@RequestBody Producto producto) {
+    public Producto createProducto(@PathVariable String sesionId, @RequestBody Producto producto) {
         Producto newProducto = productService.createProducto(producto);
-        guardarActividadProducto(newProducto, "Creacion");
+        guardarActividadProducto(newProducto, "Crear Producto:" + newProducto.getDescripcion(), sesionId);
         return newProducto;
     }
 
-    @PutMapping()
+    @PutMapping("/{sesionId}")
     @ResponseBody
-    public Producto updateProducto(@RequestBody Producto producto) {
-        guardarActividadProducto(producto, "Modificacion");
+    public Producto updateProducto(@PathVariable String sesionId , @RequestBody Producto producto) {
+        guardarActividadProducto(producto, "actualizar producto:" + producto.getDescripcion(), sesionId);
         return productService.createProducto(producto);
     }
 
-    @DeleteMapping("/{productId}")
+    @DeleteMapping("/{sesionId}/{productId}")
     @ResponseBody
-    public void deleteProducto(@PathVariable String productId) {
-        guardarActividadProducto(productService.getProductById(productId), "Eliminacion");
+    public void deleteProducto(@PathVariable String sesionId, @PathVariable String productId) {
+        guardarActividadProducto(productService.getProductById(productId), "Eliminar Producto", sesionId);
         productService.deleteProducto(productId);
     }
 
@@ -71,14 +73,14 @@ public class ProductController {
     }
 
 
-    private void guardarActividadProducto(Producto producto, String tipoOperacion) {
-            actividadProductoService.crearActividadProducto(ActividadProducto.builder()
-                    .idProducto(producto.getId())
-                    .valorAnterior(productService.getProductById(producto.getId()).toString())
-                    .valorNuevo(producto.toString())
-                    .tipoOperacion(tipoOperacion)
-                    .idUsuario("")
-                    .build());
+    private void guardarActividadProducto(Producto producto, String tipoOperacion, String sesionId) {
+        actividadProductoService.crearActividadProducto(ActividadProducto.builder()
+                .idProducto(producto.getId())
+                .valorAnterior(productService.getProductById(producto.getId()).toString())
+                .valorNuevo(producto.toString())
+                .tipoOperacion(tipoOperacion)
+                .sesionId(sesionId)
+                .build());
     }
 
 }

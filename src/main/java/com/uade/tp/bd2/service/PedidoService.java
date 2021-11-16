@@ -5,6 +5,7 @@ import com.uade.tp.bd2.model.Pedido;
 
 public interface PedidoService {
 
-    Pedido createPedido(Cart cart, String formaPago);
+    Pedido createPedido(Cart cart);
 
+    Pedido getPedidoById(String id);
 }

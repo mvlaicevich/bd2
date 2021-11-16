@@ -5,20 +5,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
-import java.util.Map;
+import org.springframework.data.annotation.Id;
 
 @Builder
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Pedido {
+public class Factura {
 
-    private int id;
-    private Map<Producto, Integer> productos;
-    private Sesion sesion;
-    private List<Impuesto> impuestos;
-
+    @Id
+    private String id;
+    private Pedido pedido;
+    private String formaPago;
+    private double total;
 }

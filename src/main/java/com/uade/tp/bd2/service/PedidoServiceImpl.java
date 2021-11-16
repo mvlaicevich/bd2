@@ -16,11 +16,10 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public Pedido createPedido(Cart cart, String formaPago) {
+    public Pedido createPedido(Cart cart) {
         Pedido pedido = Pedido.builder()
                 .productos(cart.getProductos())
                 .sesion(sesionService.getSesionById(cart.getSesionId()))
-                .formaPago(formaPago)
                 .build();
 
         return pedido;

@@ -63,15 +63,15 @@ public class CartController {
         return cartService.createCart(cart);
     }
 
-    @PostMapping("/pedido/{id}/{formaPago}")
+    @PostMapping("/pedido/{id}")
     @ResponseBody
-    public Pedido crearPedido(@PathVariable String id, @PathVariable String formaPago) {
+    public Pedido crearPedido(@PathVariable String id) {
         Cart cart = cartService.getCartById(id);
         actividadCartService.crearActividadCart(ActividadCart.builder()
                 .cartId(cart.getId())
                 .tipoActividad("Crear Pedido")
                 .build());
-        return pedidoService.createPedido(cart, formaPago);
+        return pedidoService.createPedido(cart);
     }
 
 

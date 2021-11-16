@@ -12,10 +12,13 @@ import org.springframework.data.annotation.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ActividadSesion {
+public class ActividadFactura {
 
     @Id
     private String id;
     private String sesionId;
-    private String tipoActividad;
+    private String idFactura;
+    private String actividad;
+    private double totalFacturado;;
+
 }
