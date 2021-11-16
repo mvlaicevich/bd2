@@ -2,7 +2,6 @@ package com.uade.tp.bd2.service;
 
 import com.uade.tp.bd2.model.ActividadFactura;
 import com.uade.tp.bd2.repository.ActividadFacturaRepository;
-import com.uade.tp.bd2.repository.FacturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +11,6 @@ import java.util.List;
 public class ActividadFacturaServiceImpl implements ActividadFacturaService {
 
     private ActividadFacturaRepository actividadFacturaRepository;
-    private FacturaRepository facturaRepository;
 
     @Autowired
     public ActividadFacturaServiceImpl(ActividadFacturaRepository actividadFacturaRepository) {

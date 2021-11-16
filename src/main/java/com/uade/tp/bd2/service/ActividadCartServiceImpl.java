@@ -10,20 +10,20 @@ import java.util.List;
 @Service
 public class ActividadCartServiceImpl implements ActividadCartService {
 
-    private ActividadCartRepository ActividadCartRepository;
+    private ActividadCartRepository actividadCartRepository;
 
     @Autowired
     public ActividadCartServiceImpl(ActividadCartRepository ActividadCartRepository) {
-        this.ActividadCartRepository = ActividadCartRepository;
+        this.actividadCartRepository = ActividadCartRepository;
     }
 
     @Override
     public List<ActividadCart> getActividadCartByCartId(String id) {
-        return ActividadCartRepository.findAllByCartId(id);
+        return actividadCartRepository.findAllByCartId(id);
     }
 
     @Override
     public void crearActividadCart(ActividadCart ActividadCart) {
-        ActividadCartRepository.save(ActividadCart);
+        actividadCartRepository.save(ActividadCart);
     }
 }
