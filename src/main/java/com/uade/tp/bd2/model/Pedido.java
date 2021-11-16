@@ -18,7 +18,7 @@ public class Pedido {
 
     private int id;
     private String cartId;
-    private Map<Producto, Integer> productos;
+    private Map<String, Integer> productos;
     private Sesion sesion;
     private List<Impuesto> impuestos;
 

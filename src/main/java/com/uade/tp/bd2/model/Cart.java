@@ -23,6 +23,6 @@ public class Cart {
     private String id;
     @Indexed
     private String sesionId;
-    private Map<Producto,Integer> Productos;
+    private Map<String,Integer> Productos;
 
 }

@@ -43,7 +43,7 @@ public class CartController {
         return cart;
     }
 
-    @PostMapping()
+    @PostMapping(consumes = "application/json", produces = "application/json")
     @ResponseBody
     public Cart crearCarrito(@RequestBody Cart cart) {
         Cart cartResponse = cartService.createCart(cart);

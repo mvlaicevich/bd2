@@ -14,9 +14,10 @@ public class FacturaServiceImpl implements FacturaService {
 
     private SesionService sesionService;
     private FacturaRepository facturaRepository;
+    private ProductService productService;
 
     @Autowired
-    public FacturaServiceImpl(SesionService sesionService, FacturaRepository facturaRepository) {
+    public FacturaServiceImpl(SesionService sesionService, FacturaRepository facturaRepository, ProductService productService) {
         this.sesionService = sesionService;
         this.facturaRepository = facturaRepository;
     }
@@ -38,7 +39,7 @@ public class FacturaServiceImpl implements FacturaService {
     }
 
     private double calcularTotal(Pedido pedido) {
-        List<Double> montoPedidos = pedido.getProductos().entrySet().stream().map(x -> x.getKey().getPrecio() * x.getValue()).collect(Collectors.toList());
+        List<Double> montoPedidos = pedido.getProductos().entrySet().stream().map(x -> productService.getProductById(x.getKey()).getPrecio() * x.getValue()).collect(Collectors.toList());
 
         return montoPedidos.stream().mapToDouble(Double::doubleValue).sum();
     }
