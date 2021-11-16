@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
-import java.util.List;
 
 @RedisHash("Sesion")
 @Builder
@@ -15,5 +14,4 @@ public class Sesion implements Serializable {
     @Id
     private String id;
     private User user;
-    private List<Actividad> actividades;
 }

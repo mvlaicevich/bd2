@@ -20,7 +20,7 @@ public class SesionServiceImpl implements SesionService{
 
     @Override
     public Sesion createSesion(User user) {
-        Sesion sesion = Sesion.builder().user(user).actividades(new ArrayList<>()).build();
+        Sesion sesion = Sesion.builder().user(user).build();
         return sesionRepository.save(sesion);
     }
 

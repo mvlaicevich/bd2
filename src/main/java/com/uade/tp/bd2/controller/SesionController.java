@@ -1,7 +1,9 @@
 package com.uade.tp.bd2.controller;
 
+import com.uade.tp.bd2.model.ActividadSesion;
 import com.uade.tp.bd2.model.Sesion;
 import com.uade.tp.bd2.model.User;
+import com.uade.tp.bd2.service.ActividadSesionService;
 import com.uade.tp.bd2.service.SesionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,16 +19,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class SesionController {
 
     private SesionService sesionService;
+    private ActividadSesionService actividadSesionService;
 
     @Autowired
-    public SesionController(SesionService sesionService) {
+    public SesionController(SesionService sesionService, ActividadSesionService actividadSesionService) {
         this.sesionService = sesionService;
+        this.actividadSesionService = actividadSesionService;
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     @ResponseBody
     public Sesion logUser(@RequestBody User user) {
-        return sesionService.createSesion(user);
+        Sesion sesion = sesionService.createSesion(user);
+        actividadSesionService.crearActividadSesion(ActividadSesion.builder()
+                .tipoActividad("Crear sesion")
+                .sesionId(sesion.getId())
+                .build());
+        return sesion;
     }
 
     @GetMapping("/{id}")
