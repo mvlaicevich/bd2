@@ -1,7 +1,9 @@
 package com.uade.tp.bd2.controller;
 
+import com.uade.tp.bd2.model.ActividadCart;
 import com.uade.tp.bd2.model.Cart;
 import com.uade.tp.bd2.model.Pedido;
+import com.uade.tp.bd2.service.ActividadCartService;
 import com.uade.tp.bd2.service.CartService;
 import com.uade.tp.bd2.service.PedidoService;
 import com.uade.tp.bd2.service.PedidoServiceImpl;
@@ -21,11 +23,13 @@ public class CartController {
 
     private CartService cartService;
     private PedidoService pedidoService;
+    private ActividadCartService actividadCartService;
 
     @Autowired
-    public CartController(CartService cartService, PedidoService pedidoService) {
+    public CartController(CartService cartService, PedidoService pedidoService, ActividadCartService actividadCartService) {
         this.cartService = cartService;
         this.pedidoService = pedidoService;
+        this.actividadCartService = actividadCartService;
     }
 
     @GetMapping("/{userId}")

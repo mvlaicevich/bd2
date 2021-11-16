@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ActividadSesionService {
 
-    List<ActividadSesion> getActividadSesionByIdProducto(String id);
+    List<ActividadSesion> getActividadSesionBySesionId(String id);
 
     void crearActividadSesion(ActividadSesion ActividadSesion);
 }

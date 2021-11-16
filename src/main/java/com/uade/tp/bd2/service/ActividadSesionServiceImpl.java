@@ -18,7 +18,7 @@ public class ActividadSesionServiceImpl implements ActividadSesionService {
     }
 
     @Override
-    public List<ActividadSesion> getActividadSesionByIdProducto(String id) {
+    public List<ActividadSesion> getActividadSesionBySesionId(String id) {
         return ActividadSesionRepository.findAllBySesionId(id);
     }
 
